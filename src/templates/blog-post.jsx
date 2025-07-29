@@ -1,6 +1,7 @@
 import { graphql } from 'gatsby';
 import moment from 'moment';
 import React from 'react';
+import DOMPurify from 'dompurify'; // Import DOMPurify
 
 import Header from '../components/header';
 import Layout from '../components/layout';
@@ -25,7 +26,7 @@ const BlogPost = ({ data }) => {
       </p>
       <div
         className={classes.wrapper}
-        dangerouslySetInnerHTML={{ __html: post.html }}
+        dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(post.html) }} // Sanitize HTML
       />
     </Layout>
   );
